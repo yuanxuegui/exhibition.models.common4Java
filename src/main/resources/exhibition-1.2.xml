@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exhibition xmlns="http://www.sec.ac.cn/exhibition-1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sec.ac.cn/exhibition-1.2 exhibition-1.2.xsd ">
+  <description>某展示会</description>
+  <property name="server.ip" value="192.168.1.2"/>
+  <property name="server.port" value="9090"/>
+  <area name="展区1">
+    <device id="展区1-PC-1" type="PC">
+      <operation command="$PC KEY {deviceId} {key}#" name="键值">
+        <parameter name="key" maxValue="z" minValue="a" type="STRING"/>
+      </operation>
+      <operation command="$PC PLAY {deviceId} {cmd}#" name="播放">
+        <parameter name="cmd" maxValue="4" minValue="1" type="INTEGER"/>
+      </operation>
+    </device>
+    <device id="展区1-LIGHT-1" type="LIGHT">
+      <operation command="$LIGHT ON {deviceId} {onoff}#" name="开关灯">
+        <parameter name="onoff" maxValue="1" minValue="0" type="BOOLEAN"/>
+      </operation>
+      <operation command="$LIGHT {deviceId} {val}#" name="亮度">
+        <parameter name="val" maxValue="100" minValue="0" type="INTEGER"/>
+      </operation>
+    </device>
+    <timeline>
+      <property name="unit" value="s"/>
+      <property name="max" value="40"/>
+      <timePoint tick="0">
+        <command deviceId="展区1-PC-1" operationName="键值">
+          <property name="key" value="b"/>
+        </command>
+      </timePoint>
+      <timePoint tick="1">
+        <command deviceId="展区1-PC-1" operationName="播放">
+          <property name="cmd" value="2"/>
+        </command>
+      </timePoint>
+      <timePoint tick="2">
+        <command deviceId="展区1-LIGHT-1" operationName="开关灯">
+          <property name="onoff" value="1"/>
+        </command>
+      </timePoint>
+    </timeline>
+  </area>
+  <area name="展区2">
+  	<device id="展区2-PC-1" type="PC">
+      <operation command="$PC KEY {deviceId} {key}#" name="键值">
+        <parameter name="key" maxValue="z" minValue="a" type="STRING"/>
+      </operation>
+      <operation command="$PC PLAY {deviceId} {cmd}#" name="播放">
+        <parameter name="cmd" maxValue="4" minValue="1" type="INTEGER"/>
+      </operation>
+    </device>
+    <device id="展区2-LIGHT-1" type="LIGHT">
+      <operation command="$LIGHT ON {deviceId} {onoff}#" name="开关灯">
+        <parameter name="onoff" maxValue="1" minValue="0" type="BOOLEAN"/>
+      </operation>
+      <operation command="$LIGHT {deviceId} {val}#" name="亮度">
+        <parameter name="val" maxValue="100" minValue="0" type="INTEGER"/>
+      </operation>
+    </device>
+    <timeline>
+      <property name="unit" value="s"/>
+      <property name="max" value="40"/>
+      <timePoint tick="0">
+        <command deviceId="展区1-PC-1" operationName="键值">
+          <property name="key" value="b"/>
+        </command>
+      </timePoint>
+      <timePoint tick="1">
+        <command deviceId="展区1-PC-1" operationName="播放">
+          <property name="cmd" value="2"/>
+        </command>
+      </timePoint>
+      <timePoint tick="2">
+        <command deviceId="展区1-LIGHT-1" operationName="开关灯">
+          <property name="onoff" value="1"/>
+        </command>
+      </timePoint>
+    </timeline>
+  </area>
+</exhibition>

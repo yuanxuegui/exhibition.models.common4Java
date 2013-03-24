@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.sec.ac.cn/exhibition-1.0" 
+xmlns:tns="http://www.sec.ac.cn/exhibition-1.0" elementFormDefault="qualified">
+
+    <element name="exhibition" type="tns:exhibitionType"></element>
+
+    <complexType name="exhibitionType">
+    	<sequence>
+    		<element name="description" type="string"></element>
+    		<element name="properties" type="tns:propertiesType"></element>
+    		<element name="area" type="tns:areaType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="propertiesType">
+    	<sequence>
+    		<element name="property" type="tns:propertyType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="propertyType">
+    	<sequence></sequence>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="value" type="string"></attribute>
+    </complexType>
+    
+    <complexType name="areaType">
+    	<sequence>
+    		<element name="devices" type="tns:devicesType"></element>
+    		<element name="timeline" type="tns:timelineType"></element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    </complexType>
+    
+    <complexType name="devicesType">
+    	<sequence>
+    		<element name="device" type="tns:deviceType"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="timelineType">
+    	<sequence>
+    		<element name="properties" type="tns:propertiesType"></element>
+    		<element name="timePoints" type="tns:timePointsType"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="deviceType">
+    	<sequence>
+    		<element name="operation" type="tns:operationType"></element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="type" use="required">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="CURTAIN"></enumeration>
+    				<enumeration value="LIGHT"></enumeration>
+    				<enumeration value="SOMKE"></enumeration>
+    				<enumeration value="WATER"></enumeration>
+    				<enumeration value="FOG"></enumeration>
+    				<enumeration value="SHADOW"></enumeration>
+    				<enumeration value="PC"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+
+    <complexType name="timePointsType">
+    	<sequence>
+    		<element name="timePoint" type="tns:timePointType"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="operationType">
+    	<sequence>
+    		<element name="parameter" type="tns:parameterType"></element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="command" type="string" use="required"></attribute>
+    </complexType>
+
+    <complexType name="parameterType">
+    	<sequence>
+    	</sequence>
+    	<attribute name="type" use="required">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="boolean"></enumeration>
+    				<enumeration value="integer"></enumeration>
+    				<enumeration value="decimal"></enumeration>
+    				<enumeration value="string"></enumeration>
+    				<enumeration value="date"></enumeration>
+    				<enumeration value="time"></enumeration>
+    				<enumeration value="dateTime"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="sizeMin" type="int" use="optional"></attribute>
+    	<attribute name="sizeMax" type="string" use="optional"></attribute>
+    </complexType>
+
+    <complexType name="timePointType">
+    	<sequence>
+    		<element name="command" type="tns:commandType"></element>
+    	</sequence>
+    	<attribute name="tick" type="int"></attribute>
+    </complexType>
+
+    <complexType name="commandType">
+    	<sequence>
+    		<element name="property" type="tns:propertyType"></element>
+    	</sequence>
+    	<attribute name="device-id" type="string"></attribute>
+    	<attribute name="operation-name" type="string"></attribute>
+    </complexType>
+</schema>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exhibition xmlns="http://www.sec.ac.cn/exhibition-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sec.ac.cn/exhibition-1.0 exhibition-1.0.xsd ">
+	<description>某展示会</description>
+	<properties>
+		<property name="server.ip" value="192.168.1.2" />
+		<property name="server.port" value="9090" />
+	</properties>
+	<area name="展区1">
+		<devices>
+			<device id="1-LIGHT-1" type="LIGHT">
+				<operation command="$LIGHT ON {device-id} {on}#" name="开关">
+					<parameter name="on" type="boolean" />
+				</operation>
+				<operation command="$LIGHT {device-id} {value}#" name="亮度">
+					<parameter name="value" type="integer" sizeMin="0" sizeMax="100" />
+				</operation>
+			</device>
+			<device id="1-PC-1" type="PC">
+				<operation command="55 01 21 03 {device-id} {key}#" name="键值">
+					<parameter name="key" type="integer" sizeMin="0" sizeMax="100" />
+				</operation>
+				<operation command="$PC VOL {device-id} {vol}#" name="音量">
+					<parameter name="vol" type="integer" sizeMin="0" sizeMax="100" />
+				</operation>
+			</device>
+		</devices>
+		<timeline>
+			<properties>
+				<property name="unit" value="s" />
+				<property name="max" value="40" />
+			</properties>
+			<timePoints>
+				<timePoint tick="0">
+					<command device-id="1-LIGHT-1" operation-name="开关">
+						<property name="on" value="1" />
+					</command>
+				</timePoint>
+				<timePoint tick="10">
+					<command device-id="1-LIGHT-1" operation-name="亮度">
+						<property name="value" value="50" />
+					</command>
+					<command device-id="1-PC-1" operation-name="键值">
+						<property name="key" value="F2" />
+					</command>
+				</timePoint>
+				<timePoint tick="20">
+					<command device-id="1-PC-1" operation-name="音量">
+						<property name="vol" value="100" />
+					</command>
+				</timePoint>
+			</timePoints>
+		</timeline>
+	</area>
+	<area name="展区2">
+		<devices>
+			<device id="1-LIGHT-1" type="LIGHT">
+				<operation command="$LIGHT ON {device-id} {on}#" name="开关">
+					<parameter name="on" type="boolean" />
+				</operation>
+				<operation command="$LIGHT {device-id} {value}#" name="亮度">
+					<parameter name="value" type="integer" sizeMin="0" sizeMax="100" />
+				</operation>
+			</device>
+			<device id="1-PC-1" type="PC">
+				<operation command="$PC KEY {device-id} {key}#" name="键值">
+					<parameter name="key" type="string" />
+				</operation>
+				<operation command="$PC VOL {device-id} {vol}#" name="音量">
+					<parameter name="vol" type="integer" sizeMin="0" sizeMax="100" />
+				</operation>
+			</device>
+		</devices>
+		<timeline>
+			<properties>
+				<property name="unit" value="s" />
+				<property name="max" value="40" />
+			</properties>
+			<timePoints>
+				<timePoint tick="0">
+					<command device-id="1-LIGHT-1" operation-name="开关">
+						<property name="on" value="1" />
+					</command>
+				</timePoint>
+				<timePoint tick="10">
+					<command device-id="1-LIGHT-1" operation-name="亮度">
+						<property name="value" value="50" />
+					</command>
+					<command device-id="1-PC-1" operation-name="键值">
+						<property name="key" value="F2" />
+					</command>
+				</timePoint>
+				<timePoint tick="50">
+					<command device-id="1-PC-1" operation-name="音量">
+						<property name="vol" value="100" />
+					</command>
+				</timePoint>
+			</timePoints>
+		</timeline>
+	</area>
+</exhibition>

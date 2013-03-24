@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sec.ac.cn/exhibition-1.2"
+	xmlns:tns="http://www.sec.ac.cn/exhibition-1.2" elementFormDefault="qualified">
+
+	<element name="exhibition" type="tns:exhibition"></element>
+
+	<complexType name="exhibition">
+		<sequence>
+			<element name="description" type="string"></element>
+			<choice maxOccurs="unbounded">
+				<element name="property" type="tns:property"></element>
+			</choice>
+			<choice maxOccurs="unbounded">
+				<element name="area" type="tns:area"></element>
+			</choice>
+		</sequence>
+	</complexType>
+
+
+    <complexType name="property">
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="value" type="string"></attribute>
+    </complexType>
+    
+    <complexType name="area">
+    	<sequence>
+    		<choice maxOccurs="unbounded">
+    		<element name="device" type="tns:device"></element>
+    	</choice>
+    		<element name="timeline" type="tns:timeline"></element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    </complexType>
+    
+    
+    <complexType name="timeline">
+    	<sequence>
+    		<choice maxOccurs="unbounded">
+    		<element name="property" type="tns:property"></element>
+    	</choice>
+    		<choice maxOccurs="unbounded">
+    		<element name="timePoint" type="tns:timePoint"></element>
+    	</choice>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="device">
+    	<choice maxOccurs="unbounded">
+    		<element name="operation" type="tns:operation"></element>
+    	</choice>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="type" use="required">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="CURTAIN"></enumeration>
+    				<enumeration value="LIGHT"></enumeration>
+    				<enumeration value="SOMKE"></enumeration>
+    				<enumeration value="WATER"></enumeration>
+    				<enumeration value="FOG"></enumeration>
+    				<enumeration value="SHADOW"></enumeration>
+    				<enumeration value="PC"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+
+    
+    <complexType name="operation">
+    	<choice maxOccurs="unbounded">
+    		<element name="parameter" type="tns:parameter"></element>
+    	</choice>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="command" type="string" use="required"></attribute>
+    </complexType>
+
+    <complexType name="parameter">
+    	<attribute name="type" use="required">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="BOOLEAN"></enumeration>
+    				<enumeration value="INTEGER"></enumeration>
+    				<enumeration value="DECIMAL"></enumeration>
+    				<enumeration value="STRING"></enumeration>
+    				<enumeration value="DATE"></enumeration>
+    				<enumeration value="TIME"></enumeration>
+    				<enumeration value="DATETIME"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="minValue" type="string" use="optional"></attribute>
+    	<attribute name="maxValue" type="string" use="optional"></attribute>
+    </complexType>
+
+    <complexType name="timePoint">
+    	<choice maxOccurs="unbounded">
+    		<element name="command" type="tns:command"></element>
+    	</choice>
+    	<attribute name="tick" type="int"></attribute>
+    </complexType>
+
+    <complexType name="command">
+    	<choice maxOccurs="unbounded">
+    		<element name="property" type="tns:property"></element>
+    	</choice>
+    	<attribute name="deviceId" type="string"></attribute>
+    	<attribute name="operationName" type="string"></attribute>
+    </complexType>
+</schema>
