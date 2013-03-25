@@ -28,10 +28,11 @@ public class CommandContext implements ICommandContext {
 		for (Parameter parameter : operation.getParameter()) {
 			String name = parameter.getName();
 			String value = command.getPropertyValue(name);
-			length += value.length();
-			if (name != null && value != null)
+			if (name != null && value != null) {
+				length += value.length();
 				commandContent = commandContent
 						.replace("{" + name + "}", value);
+			}
 		}
 		// {length}
 		commandContent = commandContent.replace("{" + Constants.CMD_LENGTH_ID
