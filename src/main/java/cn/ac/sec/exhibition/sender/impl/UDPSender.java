@@ -11,7 +11,7 @@ public class UDPSender implements ISender {
 
 	@Override
 	public void send(String message) {
-		System.out.println("send " + message);
+		System.out.println("send: " + message);
 	}
 
 }
